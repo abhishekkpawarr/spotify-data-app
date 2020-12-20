@@ -29,13 +29,16 @@ export default class App extends React.Component {
   }
 
   getAlbumData() {
-    fetch(`https://api.spotify.com/v1/artists/${artistID}/albums`, {
-      method: "get",
-      mode: "cors",
-      headers: new Headers({
-        Authorization: `Bearer ${this.state.access_token}`,
-      }),
-    })
+    fetch(
+      `https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/artists/${artistID}/albums`,
+      {
+        method: "get",
+        mode: "cors",
+        headers: new Headers({
+          Authorization: `Bearer ${this.state.access_token}`,
+        }),
+      }
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -62,15 +65,18 @@ export default class App extends React.Component {
     }
     formBody = formBody.join("&");
 
-    fetch("https://accounts.spotify.com/api/token", {
-      method: "post",
-      mode: "cors",
-      headers: new Headers({
-        Authorization: `Basic ${encodedID}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      }),
-      body: formBody,
-    })
+    fetch(
+      "https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api/token",
+      {
+        method: "post",
+        mode: "cors",
+        headers: new Headers({
+          Authorization: `Basic ${encodedID}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        }),
+        body: formBody,
+      }
+    )
       .then((res) => res.json())
       .then((res) => this.setState({ access_token: res.access_token }));
   }
