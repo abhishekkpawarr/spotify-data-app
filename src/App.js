@@ -61,17 +61,14 @@ export default class App extends React.Component {
     }
     formBody = formBody.join("&");
 
-    fetch(
-      "https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api/token",
-      {
-        method: "post",
-        headers: new Headers({
-          Authorization: `Basic ${encodedID}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        }),
-        body: formBody,
-      }
-    )
+    fetch("https://accounts.spotify.com/api/token", {
+      method: "post",
+      headers: new Headers({
+        Authorization: `Basic ${encodedID}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      }),
+      body: formBody,
+    })
       .then((res) => res.json())
       .then((res) => this.setState({ access_token: res.access_token }));
   }
