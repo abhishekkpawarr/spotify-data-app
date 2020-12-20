@@ -29,15 +29,12 @@ export default class App extends React.Component {
   }
 
   getAlbumData() {
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/artists/${artistID}/albums`,
-      {
-        method: "get",
-        headers: new Headers({
-          Authorization: `Bearer ${this.state.access_token}`,
-        }),
-      }
-    )
+    fetch(`https://api.spotify.com/v1/artists/${artistID}/albums`, {
+      method: "get",
+      headers: new Headers({
+        Authorization: `Bearer ${this.state.access_token}`,
+      }),
+    })
       .then((res) => {
         if (res.ok) {
           return res.json();
