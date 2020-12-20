@@ -31,6 +31,7 @@ export default class App extends React.Component {
   getAlbumData() {
     fetch(`https://api.spotify.com/v1/artists/${artistID}/albums`, {
       method: "get",
+      mode: "cors",
       headers: new Headers({
         Authorization: `Bearer ${this.state.access_token}`,
       }),
@@ -63,6 +64,7 @@ export default class App extends React.Component {
 
     fetch("https://accounts.spotify.com/api/token", {
       method: "post",
+      mode: "cors",
       headers: new Headers({
         Authorization: `Basic ${encodedID}`,
         "Content-Type": "application/x-www-form-urlencoded",
