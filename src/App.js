@@ -19,8 +19,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       albums: [],
-      access_token:
-        "BQBi80Q1FM4PkUNCDQtb9ztrw3S71xDNvheZoRW4YcE8pdWeXDvliIlNkwydD1AMymlG1BJOPAVXNDoz32zjoXSk5iLES-rqXBfP78HfMKBFj4dOix46c7oFK2ulG1OliBJ9BkQf7Qe9LpRa6mQyy0XKd3vh67D5-A",
+      access_token: "",
     };
   }
 
@@ -93,11 +92,11 @@ export default class App extends React.Component {
           bg="dark"
           className="justify-content-center"
           style={{
-            background: "linear-gradient(rgba(0, 0, 0, 0.5), transparent)",
+            background: "linear-gradient(rgba(0, 0, 0, 0.9), transparent)",
           }}
         >
           <Navbar.Brand href="#">
-            <img src={logo} width="100rem" />
+            <img src={logo} width="125rem" />
           </Navbar.Brand>
         </Navbar>
         <Container
