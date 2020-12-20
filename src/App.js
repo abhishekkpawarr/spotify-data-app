@@ -112,6 +112,27 @@ export default class App extends React.Component {
         >
           <AlbumCards albums={this.state.albums} />
         </Container>
+        <div class="d-flex flex-column">
+          <footer
+            class="footer"
+            style={{
+              backgroundColor: "#212529",
+              height: "2.5rem",
+              textAlign: "center",
+            }}
+          >
+            <div>
+              <span
+                style={{
+                  color: "#f8f9fa",
+                  fontSize: "1.25rem",
+                }}
+              >
+                Made By: Abhishek Pawar
+              </span>
+            </div>
+          </footer>
+        </div>
       </div>
     );
   }
