@@ -19,7 +19,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       albums: [],
-      access_token: "",
+      access_token:
+        "BQBi80Q1FM4PkUNCDQtb9ztrw3S71xDNvheZoRW4YcE8pdWeXDvliIlNkwydD1AMymlG1BJOPAVXNDoz32zjoXSk5iLES-rqXBfP78HfMKBFj4dOix46c7oFK2ulG1OliBJ9BkQf7Qe9LpRa6mQyy0XKd3vh67D5-A",
     };
   }
 
