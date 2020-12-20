@@ -92,11 +92,11 @@ export default class App extends React.Component {
           bg="dark"
           className="justify-content-center"
           style={{
-            background: "linear-gradient(rgba(0, 0, 0, 0.9), transparent)",
+            background: "linear-gradient(rgba(0, 0, 0, 0.1), transparent)",
           }}
         >
           <Navbar.Brand href="#">
-            <img src={logo} width="125rem" />
+            <img src={logo} width="110rem" />
           </Navbar.Brand>
         </Navbar>
         <Container
