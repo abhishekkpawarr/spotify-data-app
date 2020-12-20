@@ -5,13 +5,12 @@ export default function AlbumCard(props) {
   const { name, date, imgurl } = props;
   return (
     <Card
-      bg="light"
-      text="dark"
+      bg="dark"
+      text="light"
       style={{
-        width: "18rem",
-        margin: "1rem",
+        width: "15rem",
+        margin: "2rem",
         borderRadius: "0.5rem",
-        background: "linear-gradient(rgba(255, 255, 255, 0.5), transparent)",
       }}
       className="align-self-start"
     >
