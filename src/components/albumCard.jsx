@@ -5,17 +5,17 @@ export default function AlbumCard(props) {
   const { name, date, imgurl } = props;
   return (
     <Card
-      bg="dark"
-      text="light"
       style={{
         width: "15rem",
-        margin: "2rem",
-        borderRadius: "0.5rem",
+        borderRadius: "0.3rem",
+        margin: "1.5rem",
+        padding: "0.05rem",
+        alignSelf: "start",
+        textAlign: "start",
       }}
-      className="align-self-start"
     >
-      <Card.Img variant="top" src={imgurl} />
-      <Card.Body style={{ opacity: "65%" }}>
+      <Card.Img src={imgurl} />
+      <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle>{date}</Card.Subtitle>
       </Card.Body>

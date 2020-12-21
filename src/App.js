@@ -1,30 +1,33 @@
 import React from "react";
-import { Container, Row, Navbar } from "react-bootstrap";
 import AlbumCards from "./components/albumCards";
-import background from "./bandCover.jpg";
-import logo from "./rolling-stones-logo-text.png";
+
+import logo from "./resources/rolling-stones-logo-text.png";
+import background from "./resources/bandCover.jpg";
+import TopBar, { Footer } from "./components/navbars";
+import { Container } from "react-bootstrap";
 
 const base64 = require("base-64");
+
+const artistID = "22bE4uQ6baNwSHPVcDxLCe";
 
 const clientID = "94dd3e10abb6481993f35e9698bad543";
 const secretID = "b27c5bb650194e12a652c84e3e389e9a";
 const encodedID = base64.encode(clientID + ":" + secretID);
+
 const refresh_token =
   "AQDpfCoh0xnZrpPZkHYWT_KxH_047nAcMeJcAZXSpPQA0Ux3CN0FmYrgogs-UO33UMtJrmlTzxQ-SZXHcGtynNAXEf1IF4Y9agC_0Ksb6s9fSA5_CuTYgnFzxQaqGuR_gB4";
-
-const artistID = "22bE4uQ6baNwSHPVcDxLCe";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       albums: [],
-      access_token: "",
+      access_token:
+        "BQD_hxVA1_qtfJ-1c_D_9neySPJYhxUu0u4YY1wTGO6eLhigXMuxhHCWxwgcwfts6fNtus8rLbTakNObiRWWEs3vgpGsF1kzHO9WgVP4_eSZ8YFiKqhihLbpvUATiNxMtbPG2sYS_niOQ1I9b4zkAuX3b3dSda45wCq0pwbBUw",
     };
   }
 
   componentDidMount() {
-    this.refreshToken();
     this.getAlbumData();
   }
 
@@ -36,19 +39,17 @@ export default class App extends React.Component {
       }),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
+        if (!res.ok) {
+          throw Error("Access Token Expired");
         }
-        throw Error();
+        return res.json();
       })
       .then((result) => this.setAlbums(result.items))
-      .catch(() => {
-        this.refreshToken();
-      });
+      .catch(() => this.refreshToken());
   }
 
   refreshToken() {
-    let details = {
+    const details = {
       grant_type: "refresh_token",
       refresh_token: refresh_token,
     };
@@ -70,7 +71,10 @@ export default class App extends React.Component {
       body: formBody,
     })
       .then((res) => res.json())
-      .then((res) => this.setState({ access_token: res.access_token }));
+      .then((res) => {
+        this.setState({ access_token: res.access_token });
+      })
+      .then(() => this.getAlbumData());
   }
 
   setAlbums(data) {
@@ -86,54 +90,20 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar
-          sticky="top"
-          bg="dark"
-          className="justify-content-center"
-          style={{
-            background: "linear-gradient(rgba(0, 0, 0, 1.0), transparent)",
-          }}
-        >
-          <Navbar.Brand href="#">
-            <img src={logo} width="110rem" />
-          </Navbar.Brand>
-        </Navbar>
-        <Container
-          className="d-flex flex-wrap justify-content-center"
-          fluid
-          style={{
-            padding: "1rem",
-            backgroundImage: `url(${background})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <AlbumCards albums={this.state.albums} />
-        </Container>
-        <div class="d-flex flex-column">
-          <footer
-            class="footer"
-            style={{
-              backgroundColor: "#212529",
-              height: "2.5rem",
-              textAlign: "center",
-            }}
-          >
-            <div>
-              <span
-                style={{
-                  color: "#f8f9fa",
-                  fontSize: "1.25rem",
-                }}
-              >
-                Made By: Abhishek Pawar
-              </span>
-            </div>
-          </footer>
-        </div>
-      </div>
+      <Container
+        fluid
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          padding: 0,
+        }}
+      >
+        <TopBar logo={logo} />
+        <AlbumCards albums={this.state.albums} />
+        <Footer text="Made by Abhishek" />
+      </Container>
     );
   }
 }
