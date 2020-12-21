@@ -12,7 +12,7 @@ export default function TopBar(props) {
       }}
     >
       <Navbar.Brand href="#" style={{ margin: 0 }}>
-        <img src={logo} width="80rem" alt="logo" />
+        <img src={logo} width="110rem" alt="logo" />
       </Navbar.Brand>
     </Navbar>
   );
